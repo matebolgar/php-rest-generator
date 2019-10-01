@@ -1,0 +1,61 @@
+<nav class="navbar navbar-expand-lg mb-5">
+  <a class="navbar-brand" href="#"></a>
+  <span style="flex: 1 1 auto"></span>
+  <img src="../../assets/swisst-net-logo.png" alt="swisst.net logo" style="width: 180px">
+</nav>
+
+
+<div class="row mb-2"></div>
+<div class="row">
+  <div class="col-md-3">
+  </div>
+  <div class="col-md-6">
+    <mat-card>
+      <form [formGroup]="form" (ngSubmit)="onSubmit()">
+        <div class="form-group">
+          <mat-form-field class="w-100">
+            <input
+                formControlName="email"
+                matInput
+                placeholder="'Email'"
+                email>
+          </mat-form-field>
+          <mat-form-field class="w-100">
+            <input
+                formControlName="password"
+                matInput
+                placeholder="'Password'"
+                type="password"
+            >
+          </mat-form-field>
+        </div>
+        <br>
+        <button
+            class="form-control mb-2"
+            mat-raised-button
+            color="primary"
+            type="submit"
+            [disabled]="!form.valid"
+        >
+          Login
+        </button>
+        <br>
+        <a (click)="forgotPassword()">
+          <button type="button" class="btn btn-link float-right">
+            <small>
+              Have you forgot your password? Click here!
+            </small>
+          </button>
+        </a>
+        <br>
+      </form>
+    </mat-card>
+  </div>
+  <div class="col-md-3">
+  </div>
+</div>
+
+
+
+
+

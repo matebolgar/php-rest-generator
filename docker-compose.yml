@@ -1,0 +1,54 @@
+version: "3"
+services:
+  web:
+    image: nginx:1.15.8-alpine
+    volumes:
+      - ./gateway/nginx.conf:/etc/nginx/nginx.conf
+      - ./app/dist:/dist
+    ports:
+      - "80:80"
+    logging:
+      driver: "none"
+    networks:
+      - php_rest_generator_net
+  api:
+    build:
+      context: ./api
+      dockerfile: Dockerfile
+    environment:
+      - DB_CONNECTION=mongodb://ce-user:bX27VfJ8daQdqsRN@php_rest_generator_db:27017/ce-db
+    networks:
+      - php_rest_generator_net
+    ports:
+      - "8080:8080"
+    volumes:
+      - "./api/src:/usr/src/app/src"
+  generator_process:
+    build:
+      context: ./generator-process
+      dockerfile: Dockerfile
+    volumes:
+      - "./generator-process/src:/usr/src/app/src"
+    ports:
+      - "3000:3000"
+    networks:
+      - php_rest_generator_net
+
+  php_rest_generator_db:
+    build:
+      context: ./db
+      dockerfile: Dockerfile
+    environment:
+      - MONGO_INITDB_DATABASE=ce-db
+    ports:
+      - 27017:27017
+    logging:
+      driver: "none"
+    networks:
+      - php_rest_generator_net
+
+networks:
+  php_rest_generator_net:
+    driver: bridge
+
+

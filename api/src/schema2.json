@@ -1,0 +1,53 @@
+{
+  "namespaceRoot": "Mevisz",
+  "persistance": {
+    "dbName": "test_db"
+  },
+  "entities": [
+    {
+      "name": "article",
+      "pluralName": "articles",
+      "fields": [
+        {
+          "name": "id",
+          "type": "string",
+          "isRequired": false,
+          "isReadonly": true
+        },
+        {
+          "name": "title",
+          "type": "string",
+          "isRequired": true,
+          "isReadonly": false
+        },
+        {
+          "name": "lead",
+          "type": "string",
+          "isRequired": true,
+          "isReadonly": false
+        },
+        {
+          "name": "content",
+          "type": "string",
+          "isRequired": true,
+          "isReadonly": false
+        },
+        {
+          "name": "slug",
+          "type": "string",
+          "isRequired": true,
+          "isReadonly": true,
+          "isUnique": true,
+          "valueTransformer": "slug"
+        },
+        {
+          "name": "createdAt",
+          "type": "int",
+          "isRequired": false,
+          "isReadonly": true,
+          "valueTransformer": "currentTimestamp"
+        }
+      ]
+    }
+  ]
+}

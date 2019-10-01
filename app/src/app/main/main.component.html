@@ -1,0 +1,18 @@
+<nav mat-tab-nav-bar style="position:relative; top: 1px;border-bottom: none">
+  <a
+      class="p-3 bg-white"
+      [ngClass]="{
+        'border bg-white' : link.isActive,
+        'border-bottom-white': link.isActive
+      }"
+      *ngFor="let link of (navLinks | async) ? (navLinks | async) : []"
+      [routerLink]="[link.url]"
+  >
+    {{link.label}}
+  </a>
+</nav>
+<div class="pl-3 pr-3 pt-3 border bg-white">
+  <div class="p-3">
+    <router-outlet></router-outlet>
+  </div>
+</div>

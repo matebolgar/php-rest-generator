@@ -1,0 +1,384 @@
+<form [formGroup]="form" *ngIf="form" (ngSubmit)="submit()" class="p-3">
+  <div class="p-3 mb-2 border-bottom">
+
+    <button
+        mat-flat-button
+        color="primary"
+        type="submit"
+        [disabled]="!form.valid || (isPending$ | async)"
+    >
+      <i class="fa fa-save"></i> Save
+    </button>
+  </div>
+  <div style="height: calc(100vh - 330px); overflow-y: scroll;">
+    <div class="row mb-3 pt-3">
+      <div class="col-4">
+        <input
+            formControlName="name"
+            matInput
+            placeholder="Name"
+            class="form-control border border-secondary"
+        >
+      </div>
+      <div class="col-4">
+        <input
+            formControlName="namespaceRoot"
+            matInput
+            placeholder="Namespace Root"
+            class="form-control border border-secondary"
+        >
+      </div>
+      <ng-container formGroupName="persistance">
+        <div class="col-4">
+          <input
+              formControlName="dbName"
+              matInput
+              placeholder="Datebase Name"
+              class="form-control border border-secondary"
+          >
+        </div>
+      </ng-container>
+    </div>
+
+    <div formArrayName="entities" class="mb-3">
+      <div *ngFor="let entity of form.get('entities').controls; let i = index;">
+        <div class="row border p-4">
+
+          <ng-container [formGroupName]="i">
+            <div class="col-3 border-right">
+              <div class="form-group">
+                <input
+                    formControlName="name"
+                    matInput
+                    placeholder="Name"
+                    class="form-control border border-secondary"
+                >
+              </div>
+              <div class="form-group">
+                <input
+                    formControlName="pluralName"
+                    matInput
+                    placeholder="Plural name"
+                    class="form-control border border-secondary"
+                >
+              </div>
+              <button
+                  class="btn btn-outline-danger"
+                  type="button"
+                  (click)="removeEntity(i)">
+                <i class="fa fa-trash"></i>
+              </button>
+              <div class="row">
+                <mat-expansion-panel style="box-shadow: none" class="w-100">
+                  <mat-expansion-panel-header>
+                    Options
+                  </mat-expansion-panel-header>
+                  <ng-template matExpansionPanelContent>
+                    <ng-container formGroupName="operations" class="w-100">
+                      <div class="row mb-2 border-bottom p-2">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+                              (change)="checkAll(i, $event)">
+                            Check All
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">Auth Active</div>
+                        <div class="col-4">Generated</div>
+                      </div>
+                      <div class="row p-2 border-bottom" formGroupName="create">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+                              formControlName="isActive"
+                          >
+                            Create
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isAuthActive"
+                              [disabled]="!entity.get('operations').get('create').get('isActive').value"
+                          >
+                          </mat-slide-toggle>
+                        </div>
+                        <div class="col-4">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isGenerated"
+                              [disabled]="!entity.get('operations').get('create').get('isActive').value"
+                          >
+
+                          </mat-slide-toggle>
+                        </div>
+                      </div>
+                      <div class="row p-2 border-bottom" formGroupName="list">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+                              formControlName="isActive"
+                          >
+                            Read
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isAuthActive"
+                              [disabled]="!entity.get('operations').get('list').get('isActive').value"
+                          >
+                          </mat-slide-toggle>
+                        </div>
+                        <div class="col-4">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isGenerated"
+                              [disabled]="!entity.get('operations').get('list').get('isActive').value"
+                          >
+
+                          </mat-slide-toggle>
+                        </div>
+                      </div>
+                      <div class="row p-2 border-bottom" formGroupName="byId">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+                              formControlName="isActive"
+                          >
+                            Read by ID
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isAuthActive"
+                              [disabled]="!entity.get('operations').get('byId').get('isActive').value"
+                          >
+                          </mat-slide-toggle>
+                        </div>
+                        <div class="col-4">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isGenerated"
+                              [disabled]="!entity.get('operations').get('byId').get('isActive').value"
+                          >
+
+                          </mat-slide-toggle>
+                        </div>
+                      </div>
+                      <div class="row p-2 border-bottom" formGroupName="patch">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+
+                              formControlName="isActive"
+                          >
+                            Patch
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isAuthActive"
+                              [disabled]="!entity.get('operations').get('patch').get('isActive').value"
+                          >
+                          </mat-slide-toggle>
+                        </div>
+                        <div class="col-4">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isGenerated"
+                              [disabled]="!entity.get('operations').get('patch').get('isActive').value"
+                          >
+
+                          </mat-slide-toggle>
+                        </div>
+                      </div>
+                      <div class="row p-2 border-bottom" formGroupName="update">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+
+                              formControlName="isActive"
+                          >
+                            Update
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isAuthActive"
+                              [disabled]="!entity.get('operations').get('update').get('isActive').value"
+                          >
+                          </mat-slide-toggle>
+                        </div>
+                        <div class="col-4">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isGenerated"
+                              [disabled]="!entity.get('operations').get('update').get('isActive').value"
+                          >
+
+                          </mat-slide-toggle>
+                        </div>
+                      </div>
+                      <div class="row p-2" formGroupName="delete">
+                        <div class="col-4 border-right">
+                          <mat-checkbox
+                              color="primary"
+
+                              formControlName="isActive"
+                          >
+                            Delete
+                          </mat-checkbox>
+                        </div>
+                        <div class="col-4 border-right">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isAuthActive"
+                              [disabled]="!entity.get('operations').get('delete').get('isActive').value"
+                          >
+                          </mat-slide-toggle>
+                        </div>
+                        <div class="col-4">
+                          <mat-slide-toggle
+                              color="primary"
+                              formControlName="isGenerated"
+                              [disabled]="!entity.get('operations').get('delete').get('isActive').value"
+                          >
+
+                          </mat-slide-toggle>
+                        </div>
+                      </div>
+                    </ng-container>
+                  </ng-template>
+                </mat-expansion-panel>
+              </div>
+            </div>
+
+            <div class="col-9">
+              <div style="height: calc(100vh - 440px); overflow-y: scroll;">
+                <ng-container formGroupName="fields">
+                  <div *ngFor="let field of entity.get('fields').controls; let j = index;">
+                    <div class="p-3 m-3 border-bottom">
+                      <ng-container [formGroupName]="j">
+
+                        <div class="row">
+                          <div class="col-4">
+                            <div class="form-group">
+                              <input
+                                  formControlName="name"
+                                  matInput
+                                  placeholder="Name"
+                                  class="form-control border border-secondary"
+                              >
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="form-group">
+                              <mat-select placeholder="Type"
+                                          formControlName="type"
+                                          class="form-control border border-secondary"
+                              >
+                                <mat-option
+                                    [value]="'string'"
+                                >
+                                  String
+                                </mat-option>
+                                <mat-option
+                                    [value]="'int'"
+                                >
+                                  Integer
+                                </mat-option>
+                                <mat-option
+                                    [value]="'bool'"
+                                >
+                                  Boolean
+                                </mat-option>
+                              </mat-select>
+                            </div>
+                          </div>
+                          <div class="col-4">
+                            <div class="form-group">
+                              <mat-select placeholder="Value Transformer"
+                                          formControlName="valueTransformer"
+                                          class="form-control border border-secondary"
+                              >
+                                <mat-option
+                                    [value]="'currentTimestamp'"
+                                >
+                                  Current Timestamp
+                                </mat-option>
+                                <mat-option
+                                    [value]="'slug'"
+                                >
+                                  Slug
+                                </mat-option>
+                              </mat-select>
+                            </div>
+                          </div>
+                        </div>
+                        <div class="row">
+                          <div class="col-3">
+                            <mat-slide-toggle
+                                color="primary"
+                                formControlName="isRequired"
+                            >
+                              {{ field.get('isRequired').value ? 'Required' : 'Optional'}}
+                            </mat-slide-toggle>
+                          </div>
+                          <div class="col-3">
+                            <mat-slide-toggle
+                                color="primary"
+                                formControlName="isReadonly"
+                            >
+                              {{ field.get('isReadonly').value ? 'Read Only' : 'Not Read Only'}}
+                            </mat-slide-toggle>
+                          </div>
+                          <div class="col-3">
+                            <mat-slide-toggle
+                                color="primary"
+                                formControlName="isUnique"
+                            >
+                              {{ field.get('isUnique').value ? 'Unique' : 'Not Unique'}}
+                            </mat-slide-toggle>
+                          </div>
+                          <div class="col-3">
+                            <button
+                                class="btn btn-sm btn-outline-danger"
+                                type="button"
+                                (click)="removeField(i, j)">
+                              <i class="fa fa-trash"></i>
+                            </button>
+                          </div>
+                        </div>
+                      </ng-container>
+                    </div>
+                  </div>
+                </ng-container>
+              </div>
+              <button
+                  class="btn btn-primary m-2"
+                  type="button"
+                  (click)="addField(i)">
+                Add field
+              </button>
+            </div>
+          </ng-container>
+        </div>
+
+      </div>
+
+    </div>
+    <button
+        class="btn btn-primary"
+        type="button"
+        (click)="addEntity()">
+      Add entity
+    </button>
+    <ng-container *ngIf="isPending$ | async">
+      <mat-spinner [diameter]="30" class="float-right"></mat-spinner>
+    </ng-container>
+  </div>
+</form>

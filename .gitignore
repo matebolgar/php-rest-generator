@@ -1,0 +1,9 @@
+/api/node_modules
+/app/node_modules
+/generator-process/node_modules
+/app/dist
+.idea
+out
+schema.json
+schema-2.json
+*.DS_Store

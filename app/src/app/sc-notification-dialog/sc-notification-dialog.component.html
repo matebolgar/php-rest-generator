@@ -1,0 +1,10 @@
+<h3 mat-dialog-title>{{data.title}}</h3>
+<p mat-dialog-content [innerHTML]="data.content"></p>
+<button
+    mat-stroked-button
+    color="warn"
+    type="button"
+    (click)="dialogRef.close()"
+>
+  {{data.buttonText}}
+</button>
