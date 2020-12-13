@@ -1,7 +1,7 @@
 import {firstToUpper, OutputFile, Schema} from '../template';
 
 export const rootSlugifier = (schema: Schema): OutputFile => ({
-  filename: `out/Slugifier/Slugifier.php`,
+  filename: `Generated/Slugifier/Slugifier.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Slugifier;

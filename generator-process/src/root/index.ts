@@ -42,7 +42,7 @@ const routerMap = {
 };
 
 export const request = (schema: Schema): OutputFile => ({
-  filename: 'out/Request.php',
+  filename: 'Generated/Request.php',
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated;
@@ -60,7 +60,7 @@ class Request
 });
 
 export const rootIndex = (schema: Schema): OutputFile => ({
-  filename: 'out/index.php',
+  filename: 'Generated/index.php',
   content: `<?php
 
 require '../../vendor/autoload.php';

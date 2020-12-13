@@ -1,7 +1,7 @@
 import {firstToUpper, OutputFile, Schema} from '../template';
 
 export const rootOperationError = (schema: Schema): OutputFile => ({
-  filename: 'out/OperationError.php',
+  filename: 'Generated/OperationError.php',
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated;
@@ -49,7 +49,7 @@ ${schema.entities
 });
 
 export const rootRequiredError = (schema: Schema): OutputFile => ({
-  filename: 'out/ValidationError.php',
+  filename: 'Generated/ValidationError.php',
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated;
@@ -97,7 +97,7 @@ ${schema.entities
 });
 
 export const routeError = (schema: Schema): OutputFile => ({
-  filename: 'out/Route/Error.php',
+  filename: 'Generated/Route/Error.php',
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Route;

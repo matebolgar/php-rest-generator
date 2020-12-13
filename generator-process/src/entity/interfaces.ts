@@ -1,7 +1,7 @@
 import {Entity, firstToUpper, OutputFile} from '../template';
 
 export const byId = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/ById/ById.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/ById/ById.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\ById;
     
@@ -15,7 +15,7 @@ export const byId = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const deleter = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Delete/Deleter.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Delete/Deleter.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Delete;
     
@@ -28,7 +28,7 @@ export const deleter = (namespaceRoot, entity: Entity): OutputFile => ({
 
 
 export const lister = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Listing/Lister.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Listing/Lister.php`,
   content: `<?php
       namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Listing;
       
@@ -42,7 +42,7 @@ export const lister = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const updater = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Update/Updater.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Update/Updater.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Update;
     
@@ -56,7 +56,7 @@ export const updater = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const patcher = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Patch/Patcher.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Patch/Patcher.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Patch;
     

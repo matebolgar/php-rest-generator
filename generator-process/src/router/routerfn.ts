@@ -1,7 +1,7 @@
 import {Entity, OutputFile} from '../template';
 
 export const routerFn = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/Route/RouterFn.php`,
+  filename: `Generated/Route/RouterFn.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\Route;

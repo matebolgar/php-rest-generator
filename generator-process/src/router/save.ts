@@ -1,7 +1,7 @@
 import {Entity, firstToUpper, OutputFile} from '../template';
 
 export const routeSaver = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/Route/${firstToUpper(entity.name)}/${firstToUpper(entity.name)}Saver.php`,
+  filename: `Generated/Route/${firstToUpper(entity.name)}/${firstToUpper(entity.name)}Saver.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\Route\\${firstToUpper(entity.name)};

@@ -37,7 +37,7 @@ const toNew = (field: Field) => {
 
 
 export const saveController = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Save/SaveController.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Save/SaveController.php`,
   content: `<?php
 
   namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Save;
@@ -179,7 +179,7 @@ export const saveController = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const saver = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Save/Saver.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Save/Saver.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Save;
 
@@ -193,7 +193,7 @@ export const saver = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const slugifier = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Save/Slugifier.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Save/Slugifier.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Save;
 

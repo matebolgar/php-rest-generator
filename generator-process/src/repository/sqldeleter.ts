@@ -3,7 +3,7 @@ import {Entity, firstToUpper, OutputFile} from '../template';
 export const sqlDeleter = (namespaceRoot, entity: Entity): OutputFile => {
 
   return {
-    filename: `out/Repository/${firstToUpper(entity.name)}/SqlDeleter.php`,
+    filename: `Generated/Repository/${firstToUpper(entity.name)}/SqlDeleter.php`,
     content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\Repository\\${firstToUpper(entity.name)};

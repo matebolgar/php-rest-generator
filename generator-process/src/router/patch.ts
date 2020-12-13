@@ -2,7 +2,7 @@ import {Entity, firstToUpper, OutputFile} from '../template';
 
 
 export const routePatcher = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/Route/${firstToUpper(entity.name)}/${firstToUpper(entity.name)}Patcher.php`,
+  filename: `Generated/Route/${firstToUpper(entity.name)}/${firstToUpper(entity.name)}Patcher.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\Route\\${firstToUpper(entity.name)};

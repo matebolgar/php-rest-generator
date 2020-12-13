@@ -8,7 +8,7 @@ interface EntityStruct {
 }
 
 export const updateObject = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Update/Updated${firstToUpper(entity.name)}.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Update/Updated${firstToUpper(entity.name)}.php`,
   content: entityObject(
     {
       namespace: `${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Update`,
@@ -19,7 +19,7 @@ export const updateObject = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const patchObject = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Patch/Patched${firstToUpper(entity.name)}.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Patch/Patched${firstToUpper(entity.name)}.php`,
   content: entityObject(
     {
       namespace: `${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Patch`,
@@ -30,7 +30,7 @@ export const patchObject = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const saveObject = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Save/New${firstToUpper(entity.name)}.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Save/New${firstToUpper(entity.name)}.php`,
   content: entityObject(
     {
       namespace: `${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Save`,
@@ -41,7 +41,7 @@ export const saveObject = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const listObject = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${entity.name}/${firstToUpper(entity.name)}.php`,
+  filename: `Generated/${entity.name}/${firstToUpper(entity.name)}.php`,
   content: entityObject(
     {
       namespace: `${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}`,

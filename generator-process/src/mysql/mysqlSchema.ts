@@ -1,7 +1,7 @@
 import {Entity, Field, OutputFile, Schema} from '../template';
 
 export const mysqlSchema = (schema: Schema): OutputFile => ({
-  filename: `out/schema.sql`,
+  filename: `schema.sql`,
   content: `
   ${schema.entities.map(toSchema).join('')}
   

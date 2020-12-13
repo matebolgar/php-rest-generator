@@ -31,7 +31,7 @@ const readAndWrite = schema => src => dest =>
     .then(filenames => filecontent(schema)(src)(filenames)
       .then(contents => zip(filenames, contents)))
     .then(fileNamesAndContents => fileNamesAndContents.map(item => ({
-      filename: join('out', dest, item[0]),
+      filename: join('Generated', dest, item[0]),
       content: item[1]
     })));
 

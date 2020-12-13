@@ -1,7 +1,7 @@
 import {Entity, firstToUpper, OutputFile} from '../template';
 
 export const error = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Error/Error.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Error/Error.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Error;
@@ -58,7 +58,7 @@ class Error
 
 
 export const operationError = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Error/OperationError.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Error/OperationError.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Error;
@@ -73,7 +73,7 @@ interface OperationError extends Throwable
 });
 
 export const validationError = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${entity.name}/Error/ValidationError.php`,
+  filename: `Generated/${entity.name}/Error/ValidationError.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Error;

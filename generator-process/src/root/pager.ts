@@ -1,7 +1,7 @@
 import {OutputFile, Schema} from '../template';
 
 export const rootPager = (schema: Schema): OutputFile => ({
-  filename: 'out/Paging/Pager.php',
+  filename: 'Generated/Paging/Pager.php',
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Paging;

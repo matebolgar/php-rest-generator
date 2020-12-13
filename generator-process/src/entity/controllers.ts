@@ -9,7 +9,7 @@ const nullTypes = {
 };
 
 export const byIdController = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/ById/ByIdController.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/ById/ByIdController.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\ById;
     
@@ -52,7 +52,7 @@ export const byIdController = (namespaceRoot, entity: Entity): OutputFile => ({
 });
 
 export const deleteController = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Delete/DeleteController.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Delete/DeleteController.php`,
   content: `<?php
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Delete;
     
@@ -87,7 +87,7 @@ export const deleteController = (namespaceRoot, entity: Entity): OutputFile => (
 });
 
 export const listController = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Listing/ListController.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Listing/ListController.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Listing;
@@ -192,7 +192,7 @@ class ListController
 
 export const updateController = (namespaceRoot, entity: Entity): OutputFile => (
   {
-    filename: `out/${firstToUpper(entity.name)}/Update/UpdateController.php`,
+    filename: `Generated/${firstToUpper(entity.name)}/Update/UpdateController.php`,
     content: `<?php
 
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Update;
@@ -251,7 +251,7 @@ export const updateController = (namespaceRoot, entity: Entity): OutputFile => (
 
 export const patchController = (namespaceRoot, entity: Entity): OutputFile => (
   {
-    filename: `out/${firstToUpper(entity.name)}/Patch/PatchController.php`,
+    filename: `Generated/${firstToUpper(entity.name)}/Patch/PatchController.php`,
     content: `<?php
 
     namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Patch;
@@ -306,7 +306,7 @@ export const patchController = (namespaceRoot, entity: Entity): OutputFile => (
 );
 
 export const countedEntities = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Listing/Counted${firstToUpper(entity.pluralName)}.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Listing/Counted${firstToUpper(entity.pluralName)}.php`,
   content: `<?php
 
   namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Listing;
@@ -346,7 +346,7 @@ export const countedEntities = (namespaceRoot, entity: Entity): OutputFile => ({
 
 
 export const response = (namespaceRoot, entity: Entity): OutputFile => ({
-  filename: `out/${firstToUpper(entity.name)}/Listing/Response.php`,
+  filename: `Generated/${firstToUpper(entity.name)}/Listing/Response.php`,
   content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\${firstToUpper(entity.name)}\\Listing;

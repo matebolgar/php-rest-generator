@@ -1,7 +1,7 @@
 import {OutputFile, Schema} from '../template';
 
 export const paging = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/Paging.php`,
+  filename: `Generated/Listing/Paging.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;
@@ -50,7 +50,7 @@ class Paging implements JsonSerializable
 });
 
 export const query = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/Query.php`,
+  filename: `Generated/Listing/Query.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;
@@ -114,7 +114,7 @@ class Query
 
 
 export const listFilter = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/Filter.php`,
+  filename: `Generated/Listing/Filter.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;
@@ -179,7 +179,7 @@ class Filter
 });
 
 export const clause = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/Clause.php`,
+  filename: `Generated/Listing/Clause.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;
@@ -218,7 +218,7 @@ class Clause
 });
 
 export const orderBy = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/OrderBy.php`,
+  filename: `Generated/Listing/OrderBy.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;
@@ -256,7 +256,7 @@ class OrderBy
 
 
 export const links = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/Links.php`,
+  filename: `Generated/Listing/Links.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;
@@ -322,7 +322,7 @@ class Links implements JsonSerializable
 });
 
 export const pager = (schema: Schema): OutputFile => ({
-  filename: `out/Listing/Pager.php`,
+  filename: `Generated/Listing/Pager.php`,
   content: `<?php
 
 namespace ${schema.namespaceRoot}\\Generated\\Listing;

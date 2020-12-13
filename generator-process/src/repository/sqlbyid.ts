@@ -4,7 +4,7 @@ import {typeMap} from './sqlister';
 export const sqlById = (namespaceRoot, entity: Entity): OutputFile => {
 
   return {
-    filename: `out/Repository/${firstToUpper(entity.name)}/SqlByIdGetter.php`,
+    filename: `Generated/Repository/${firstToUpper(entity.name)}/SqlByIdGetter.php`,
     content: `<?php
 
 namespace ${namespaceRoot}\\Generated\\Repository\\${firstToUpper(entity.name)};
