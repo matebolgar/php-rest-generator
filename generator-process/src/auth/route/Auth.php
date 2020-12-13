@@ -48,6 +48,9 @@ class Auth
     private static function register(mysqli $conn)
     {
         return function (Request $request) use ($conn) {
+            if(!$request->body['pw'] !== $_SERVER['MASTER_PW']) {
+                return;
+            }
             $res = (new RegistrationController(
                 new MysqlUserSaver($conn),
                 new MySqlUserByEmailGetter($conn),
@@ -63,6 +66,9 @@ class Auth
     private static function listUsers(mysqli $conn)
     {
         return function (Request $request) use ($conn) {
+            if(!$request->body['pw'] !== $_SERVER['MASTER_PW']) {
+                return;
+            }
             try {
                 $headers = getallheaders();
 

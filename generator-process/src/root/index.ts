@@ -83,7 +83,7 @@ if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
 if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") {
     header("Access-Control-Allow-Origin: *");
     header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-    header('Access-Control-Allow-Headers: Origin, X-Requested-With, Content-Type, Accept, Authorization');
+    header('Access-Control-Allow-Headers: Origin, Pragma, Cache-control, X-Requested-With, Content-Type, Accept, Authorization');
     exit;
 }
 
@@ -128,7 +128,7 @@ function switchRoute(array $routeInfo, mysqli $conn)
 {
     header("Content-Type: application/json");
     header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PUT,DELETE");
+    header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT,DELETE");
     switch ($routeInfo[0]) {
         case Dispatcher::NOT_FOUND:
             echo json_encode(["error" => "not found"]);

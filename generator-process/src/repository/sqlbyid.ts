@@ -33,8 +33,16 @@ class SqlByIdGetter implements ById
             return new ${firstToUpper(entity.name)}(${entity.fields.map(field => `(${typeMap[field.type]})$result['${field.name}']`).join(', ')});
         
         } catch (\\Error $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+                var_dump($exception);
+                exit;
+            }
             throw new OperationError("by id error");
         } catch (\\Exception $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+                var_dump($exception);
+                exit;
+            }
             throw new OperationError("by id error");
         }
     }

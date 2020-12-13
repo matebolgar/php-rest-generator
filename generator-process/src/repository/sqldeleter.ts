@@ -31,8 +31,16 @@ class SqlDeleter implements Deleter
   
           return $id;   
         } catch (\\Error $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+              var_dump($exception);
+              exit;
+            }
             throw new OperationError("delete error");
         } catch (\\Exception $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+              var_dump($exception);
+              exit;
+            }
             throw new OperationError("delete error");
         }
     }

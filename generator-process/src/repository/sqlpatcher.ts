@@ -73,8 +73,16 @@ class SqlPatcher implements Patcher
       .map(field => field.isReadonly ? `$byId->get${firstToUpper(field.name)}()` : `$merged->get${firstToUpper(field.name)}()`)});
       
       } catch (\\Error $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+                var_dump($exception);
+                exit;
+            }
           throw new OperationError("patch error");
       } catch (\\Exception $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+                var_dump($exception);
+                exit;
+            }
           throw new OperationError("patch error");
       }
     }

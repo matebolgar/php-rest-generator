@@ -52,8 +52,16 @@ class SqlSaver implements Saver
     
             return new ${firstToUpper(entity.name)}((string)$statement->insert_id, ${entity.fields.filter(isNotId).map(field => `$new->get${firstToUpper(field.name)}()`)});
         } catch (\\Error $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+                var_dump($exception);
+                exit;
+            }
             throw new OperationError("save error");
         } catch (\\Exception $exception) {
+            if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+                var_dump($exception);
+                exit;
+            }
             throw new OperationError("save error");
         }
     }

@@ -58,8 +58,16 @@ class SqlUpdater implements Updater
       .map(field => field.isReadonly ? `$byId->get${firstToUpper(field.name)}()` : `$entity->get${firstToUpper(field.name)}()`)});
       
       } catch (\\Error $exception) {
+          if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+            var_dump($exception);
+            exit;
+          }
           throw new OperationError("update error");
       } catch (\\Exception $exception) {
+          if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
+            var_dump($exception);
+            exit;
+          }
           throw new OperationError("update error");
       }
     }
