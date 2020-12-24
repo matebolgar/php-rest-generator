@@ -99,7 +99,7 @@ $dispatcher = FastRoute\\simpleDispatcher(function (RouteCollector $r) use ($con
 
     try {
     
-      if (class_exists('\\${schema.namespaceRoot}\\Router')) {
+      if (method_exists('\\${schema.namespaceRoot}\\Router', 'registerRoutes')) {
           (new \\${schema.namespaceRoot}\\Router())->registerRoutes($r, $conn);
       }
 
@@ -131,7 +131,11 @@ function switchRoute(array $routeInfo, mysqli $conn)
     header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT,DELETE");
     switch ($routeInfo[0]) {
         case Dispatcher::NOT_FOUND:
-            echo json_encode(["error" => "not found"]);
+            if (method_exists('\\${schema.namespaceRoot}\\Router', 'registerNotFoundRoute')) {
+                (new \\${schema.namespaceRoot}\\Router())->registerNotFoundRoute($conn);
+            } else {
+                echo json_encode(["error" => "not found"]);
+            }
             break;
         case Dispatcher::METHOD_NOT_ALLOWED:
             echo json_encode(["error" => "method not allowed. allowed methods: " . implode(", ", $routeInfo[1])]);
