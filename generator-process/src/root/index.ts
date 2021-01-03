@@ -78,14 +78,14 @@ if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
+    if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") {
+        header("Access-Control-Allow-Origin: *");
+        header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+        header('Access-Control-Allow-Headers: Origin, Pragma, Cache-control, X-Requested-With, Content-Type, Accept, Authorization');
+        exit;
+    }
 }
 
-if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") {
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-    header('Access-Control-Allow-Headers: Origin, Pragma, Cache-control, X-Requested-With, Content-Type, Accept, Authorization');
-    exit;
-}
 
 $conn = new mysqli(
     $_SERVER['MYSQL_SERVER'],
@@ -126,9 +126,6 @@ switchRoute($dispatcher->dispatch($_SERVER['REQUEST_METHOD'], parse_url($_SERVER
 
 function switchRoute(array $routeInfo, mysqli $conn)
 {
-    header("Content-Type: application/json");
-    header("Access-Control-Allow-Origin: *");
-    header("Access-Control-Allow-Methods: GET, POST, PATCH, PUT,DELETE");
     switch ($routeInfo[0]) {
         case Dispatcher::NOT_FOUND:
             if (method_exists('\\${schema.namespaceRoot}\\Router', 'registerNotFoundRoute')) {

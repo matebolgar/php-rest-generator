@@ -21,6 +21,7 @@ class ${firstToUpper(entity.name)}ById implements RouterFn
     {
         ${entity.operations.byId.isAuthActive ? `(new JwtTokenVerifier())->verify((new AuthHeaderParser())->getBearerToken() ?? '');` : ''}
 
+        header("Content-Type: application/json");
         return json_encode((new ByIdController(
             new SqlByIdGetter($request->connection),
             new OperationError())

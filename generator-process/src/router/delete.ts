@@ -23,6 +23,7 @@ class ${firstToUpper(entity.name)}Deleter implements RouterFn
         ` (new JwtTokenVerifier())->verify((new AuthHeaderParser())->getBearerToken() ?? '');` : 
           ''}
 
+        header("Content-Type: application/json");
         return json_encode(['id' => (new DeleteController(
             new OperationError(),
             new SqlDeleter($request->connection))

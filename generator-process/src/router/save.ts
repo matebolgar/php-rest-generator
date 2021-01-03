@@ -24,6 +24,7 @@ class ${firstToUpper(entity.name)}Saver implements RouterFn
     {
        ${entity.operations.create.isAuthActive ? `(new JwtTokenVerifier())->verify((new AuthHeaderParser())->getBearerToken() ?? '');` : ''}
 
+        header("Content-Type: application/json");
         return json_encode((new SaveController(
             new SqlSaver($request->connection),
             new SqlLister($request->connection),

@@ -23,6 +23,7 @@ class ${firstToUpper(entity.name)}Updater implements RouterFn
     {
         ${entity.operations.update.isAuthActive ? `(new JwtTokenVerifier())->verify((new AuthHeaderParser())->getBearerToken() ?? '');` : ''}
     
+        header("Content-Type: application/json");
         return json_encode((new UpdateController(
             new SqlUpdater($request->connection),
             new OperationError(),

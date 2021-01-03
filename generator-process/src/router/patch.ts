@@ -23,6 +23,7 @@ class ${firstToUpper(entity.name)}Patcher implements RouterFn
     {
        ${entity.operations.patch.isAuthActive ? `(new JwtTokenVerifier())->verify((new AuthHeaderParser())->getBearerToken() ?? '');` : ''}
 
+        header("Content-Type: application/json");
         return json_encode((new PatchController(
             new SqlPatcher($request->connection),
             new OperationError(),
