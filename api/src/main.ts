@@ -27,7 +27,8 @@ export const update = (schema, id) => client
 export const deleteSchema = id => client
   .db('ce-db')
   .collection('restSchema')
-  .findOneAndDelete(new ObjectId(id));
+  .findOneAndDelete({_id: new ObjectId(id)});
+  
 
 export const list = query => client
   .db('ce-db')

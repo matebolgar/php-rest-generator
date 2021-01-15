@@ -78,12 +78,14 @@ if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
     error_reporting(E_ALL);
     ini_set("display_errors", 1);
     mysqli_report(MYSQLI_REPORT_ERROR | MYSQLI_REPORT_STRICT);
-    if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") {
-        header("Access-Control-Allow-Origin: *");
-        header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
-        header('Access-Control-Allow-Headers: Origin, Pragma, Cache-control, X-Requested-With, Content-Type, Accept, Authorization');
-        exit;
-    }
+}
+
+if ($_SERVER['REQUEST_METHOD'] === "OPTIONS") {
+    header("Access-Control-Allow-Origin: " . $_SERVER['HTTP_ORIGIN'] ?? '*');
+    header("Access-Control-Allow-Credentials: true");
+    header("Access-Control-Allow-Methods: GET, POST, PUT, PATCH, DELETE, OPTIONS");
+    header('Access-Control-Allow-Headers: Origin, Pragma, Cache-control, X-Requested-With, Content-Type, Accept, Authorization');
+    exit;
 }
 
 
