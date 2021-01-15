@@ -100,10 +100,6 @@ $conn = new mysqli(
 $dispatcher = FastRoute\\simpleDispatcher(function (RouteCollector $r) use ($conn) {
 
     try {
-    
-      if (method_exists('\\${schema.namespaceRoot}\\Router', 'registerRoutes')) {
-          (new \\${schema.namespaceRoot}\\Router())->registerRoutes($r, $conn);
-      }
 
       ${schema.entities.map(entity => Object
     .values(entity.operations)
@@ -114,6 +110,10 @@ $dispatcher = FastRoute\\simpleDispatcher(function (RouteCollector $r) use ($con
     .reduce(sum, '')}
 
      \\${schema.namespaceRoot}\\Generated\\Route\\Auth\\Auth::getRoutes($r, $conn);
+
+     if (method_exists('\\${schema.namespaceRoot}\\Router', 'registerRoutes')) {
+        (new \\${schema.namespaceRoot}\\Router())->registerRoutes($r, $conn);
+    }
 
     } catch (Error $e) {
         var_dump($e->getMessage());
