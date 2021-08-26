@@ -5,7 +5,7 @@ const bodyParser = require('body-parser');
 const mongodb = require('mongodb');
 const MongoClient = mongodb.MongoClient;
 const ObjectId = mongodb.ObjectID;
-const client = new MongoClient(process.env['DB_CONNECTION'], {useNewUrlParser: true});
+const client = new MongoClient(process.env['DB_CONNECTION'], {useNewUrlParser: true, useUnifiedTopology: true});
 
 const fileUpload = require('express-fileupload');
 app.use(fileUpload());
