@@ -78,7 +78,7 @@ const compose = (...fns) =>
     value => value
   );
 
-export const validateJson = (json: Schema) => new Promise((resolve, reject) => {
+export const validateJson = (json: Schema): Promise<any> => new Promise((resolve, reject) => {
   const arr = compose(toMessage, flatten, flatten, map(entityToErrors))(json.entities);
   if (arr.length) {
     return reject(arr.reduce((acc, cr) => acc + cr, 'Errors: \n'));

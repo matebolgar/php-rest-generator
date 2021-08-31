@@ -73,7 +73,7 @@ export const flatten = <T>(arrays: Array<T>): T => [].concat.apply([], arrays);
 
 export const sum = (acc, cr) => acc + cr;
 
-export const files = async (schema: Schema): Promise<OutputFile[]> =>
+export const toFiles = async (schema: Schema): Promise<OutputFile[]> =>
   [
     ...flatten(schema.entities.map(entity => forEntity.map(fn => fn(schema.namespaceRoot, entity)))),
     ...forRoot.map(fn => fn((schema))),

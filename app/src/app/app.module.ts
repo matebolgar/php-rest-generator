@@ -1,3 +1,4 @@
+import { ForgotPasswordDialogComponent } from './login/forgot-password-dialog.component';
 import {HttpClientModule} from '@angular/common/http';
 import {NgModule} from '@angular/core';
 import {ReactiveFormsModule} from '@angular/forms';
@@ -78,7 +79,8 @@ import {EntityEffects} from './store/entity-effects';
     DashboardComponent,
     SchemaCreateComponent,
     SchemaListComponent,
-    SchemaEditComponent
+    SchemaEditComponent,
+    ForgotPasswordDialogComponent
   ],
   providers: [
     AuthenticationService,
