@@ -62,27 +62,33 @@ const getBody = (request): any =>
 
 http
   .createServer(async (req, response) => {
-    const body = JSON.parse(await getBody(req));
-    const item = transformSchema(await validateJson(body));
+    try {
 
-    const filesPrs = await toFiles(item);
-
-    const contents = await Promise.all.call(Promise, filesPrs);
-
-    response.setHeader("Content-Type", "application/zip");
-    response.setHeader("Content-disposition", `attachment; filename=generated.zip`);
-
-    const zip = new JSZip();
-
-    contents.forEach((item) => {
-      zip.file(item.filename, item.content);
-    });
-
-    zip
-      .generateNodeStream({ type: "nodebuffer", streamFiles: true })
-      .pipe(response)
-      .on("finish", function () {
-        console.log("out.zip written.");
+      const body = JSON.parse(await getBody(req));
+      const item = transformSchema(await validateJson(body));
+  
+      const filesPrs = await toFiles(item);
+  
+      const contents = await Promise.all.call(Promise, filesPrs);
+  
+      response.setHeader("Content-Type", "application/zip");
+      response.setHeader("Content-disposition", `attachment; filename=generated.zip`);
+  
+      const zip = new JSZip();
+  
+      contents.forEach((item) => {
+        zip.file(item.filename, item.content);
       });
+  
+      zip
+        .generateNodeStream({ type: "nodebuffer", streamFiles: true })
+        .pipe(response)
+        .on("finish", function () {
+          console.log("out.zip written.");
+        });
+    } catch (e) {
+        console.log(e);
+        
+    }
   })
   .listen(3000);

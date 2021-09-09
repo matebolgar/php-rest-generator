@@ -178,5 +178,7 @@ app.get("/download-generated/:schemaId", function (req, response) {
 //   if (err) {
 //     process.exit();
 //   }
-app.listen(8080);
+app.listen(8080, () => {
+  console.log("PHP REST Generator active at port 8080");
+});
 // });
