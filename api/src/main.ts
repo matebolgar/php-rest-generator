@@ -32,7 +32,6 @@ export const update = async (schema, id) => {
   const client = await getClient();
   return client
     .db("ce-db")
-    .db("ce-db")
     .collection("restSchema")
     .findOneAndReplace({ _id: new ObjectId(id) }, schema, { returnOriginal: false });
 };
@@ -40,7 +39,6 @@ export const update = async (schema, id) => {
 export const deleteSchema = async (id) => {
   const client = await getClient();
   return client
-    .db("ce-db")
     .db("ce-db")
     .collection("restSchema")
     .findOneAndDelete({ _id: new ObjectId(id) });
