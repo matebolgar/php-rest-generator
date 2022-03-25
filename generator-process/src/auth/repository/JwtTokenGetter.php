@@ -14,7 +14,7 @@ class JwtTokenGetter implements TokenGetter
         return new AccessToken(JWT::encode([
             "sub" => $userId,
             "iat" => time(),
-            "exp" => time() + 60 * 10,
+            "exp" => time() + 60 * 60 * 24,
         ], $_SERVER['ACCESS_TOKEN_SECRET']));
     }
 

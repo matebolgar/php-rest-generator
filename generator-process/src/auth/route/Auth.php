@@ -48,7 +48,7 @@ class Auth
     private static function register(mysqli $conn)
     {
         return function (Request $request) use ($conn) {
-            if(!$request->body['pw'] !== $_SERVER['MASTER_PW']) {
+            if($request->body['pw'] !== $_SERVER['MASTER_PW']) {
                 return;
             }
             $res = (new RegistrationController(

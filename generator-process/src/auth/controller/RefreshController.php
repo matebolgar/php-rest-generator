@@ -17,10 +17,12 @@ class RefreshController
 
     public function refresh(string $tokenValue): AccessToken
     {
-        $token = $refreshToken = $this->rawTokenGetter->getRawToken($tokenValue);
+        $token = $this->rawTokenGetter->getRawToken($tokenValue);
 
         if (!$token) {
-            throw new AuthException();
+            http_response_code(403);
+            echo json_encode(["error" => "refreshFailed"]);
+            exit;
         }
 
         return $this->tokenGetter->getAccessToken($token->getUserId());
