@@ -1,4 +1,4 @@
-import {Entity, firstToUpper, OutputFile} from '../template';
+import {Entity, Field, firstToUpper, OutputFile} from '../template';
 import {typeMap} from './sqlister';
 
 export const sqlById = (namespaceRoot, entity: Entity): OutputFile => {
@@ -30,7 +30,15 @@ class SqlByIdGetter implements ById
             $stmt->bind_param('s', $id);
             $stmt->execute();
             $result = $stmt->get_result()->fetch_assoc();
-            return new ${firstToUpper(entity.name)}(${entity.fields.map(field => `(${typeMap[field.type]})$result['${field.name}']`).join(', ')});
+            return new ${firstToUpper(entity.name)}(${entity.fields.map((field: Field) => {
+
+              if(field.isRequired) {
+                return `(${typeMap[field.type]})$result['${field.name}']`;
+              }
+              
+              return `$result['${field.name}'] === null ? null : (${typeMap[field.type]})$result['${field.name}']`
+            }
+            ).join(',\n                        ')});
         
         } catch (\\Error $exception) {
             if ($_SERVER['DEPLOYMENT_ENV'] === 'dev') {
