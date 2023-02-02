@@ -11,7 +11,7 @@
   "license": "ISC",
   "dependencies": {
     "archiver": "^3.0.0",
-    "jszip": "^3.7.1",
+    "jszip": "^3.8.0",
     "mysql": "^2.16.0",
     "stream": "0.0.2"
   },
